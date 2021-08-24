@@ -1,17 +1,20 @@
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   Checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
 
-      - name: Pull & update submodules recursively
-        run: |
-          git submodule update --init --recursive
-          git submodule update --recursive --remote
+      # - name: Pull & update submodules recursively
+      #   shell: bash
+      #   run: |
+      #     git submodule update --init --recursive
+      #     git submodule update --recursive --remote
 
       - name: Check frontend
         run: git diff --quiet HEAD^ HEAD ./frontend
