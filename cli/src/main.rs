@@ -12,7 +12,11 @@ use poptg::{
 use regex::Regex;
 
 #[derive(Clap, Debug)]
-#[clap(version = "1.0", author = "George Miao <gm@miao.dev>")]
+#[clap(
+    version = "1.0",
+    author = "George Miao <gm@miao.dev>",
+    about = "CLI for interacting with URL-shortener Pop.tg"
+)]
 #[clap(setting = AppSettings::ColoredHelp)]
 struct Opts {
     #[clap(subcommand)]
