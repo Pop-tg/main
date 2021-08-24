@@ -17,7 +17,7 @@ jobs:
       #     git submodule update --recursive --remote
 
       - name: Check frontend
-        run: git diff --quiet HEAD^ HEAD ./frontend
+        run: git diff --quiet HEAD^ HEAD -- ./frontend
 
       - name: Install
         uses: CultureHQ/actions-yarn@master
