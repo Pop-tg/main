@@ -53,9 +53,8 @@ impl Client {
 async fn test() {
     use crate::model::*;
     use log::info;
-    use simple_logger::init;
 
-    init().unwrap();
+    pretty_env_logger::init();
 
     let client = Client::new();
     let res = client

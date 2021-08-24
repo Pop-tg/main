@@ -32,6 +32,7 @@ pub enum Response<T> {
 pub struct URLRecord {
     pub key: String,
     pub value: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub expire: Option<u64>,
 }
 
@@ -46,6 +47,7 @@ pub struct GetRequest {
 pub struct PostRequest {
     pub key: String,
     pub value: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub ttl: Option<u64>,
 }
 
@@ -54,6 +56,7 @@ pub struct PutRequest {
     pub key: String,
     pub value: String,
     pub token: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub ttl: Option<u64>,
 }
 
@@ -65,6 +68,7 @@ pub struct DelRequest {
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct ListRequest {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub cursor: Option<String>,
 }
 
@@ -89,6 +93,16 @@ pub struct PostResponse {
     pub token: String,
     pub key: String,
     pub value: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub expire: Option<u64>,
+}
+
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct UrlStored {
+    pub key: String,
+    pub value: String,
+    pub token: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub expire: Option<u64>,
 }
 
