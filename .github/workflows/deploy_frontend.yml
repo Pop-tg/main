@@ -12,21 +12,11 @@ jobs:
 
       - id: check
         name: Check frontend
-        run: git diff --quiet HEAD^ HEAD -- ./frontend
-
-      - name: Inspect
-        run: echo ${{ steps.check.conclusion }}
-
-      - name: Install
-        if: steps.check.conclusion == 'success'
-        uses: CultureHQ/actions-yarn@master
-        with:
-          args: install
+        run: git --no-pager diff HEAD^ HEAD -- ./frontend | grep diff
 
       - name: Build
-        if: steps.check.conclusion == 'success'
-        run: yarn build
-
-      - name: Inspect
-        if: steps.check.conclusion == 'success'
-        run: ls -l build
+        run: |
+          cd frontend
+          npm i
+          npm run build
+          ls -l build
