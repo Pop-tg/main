@@ -1,0 +1,6 @@
+{
+  "packages": ["api", "frontend"],
+  "npmClient": "yarn",
+  "command": {},
+  "version": "0.0.0"
+}
