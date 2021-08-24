@@ -3,26 +3,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  Checkout:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
 
-      # - name: Pull & update submodules recursively
-      #   shell: bash
-      #   run: |
-      #     git submodule update --init --recursive
-      #     git submodule update --recursive --remote
-
-      - name: Check frontend
+      - id: check
+        name: Check frontend
         run: git diff --quiet HEAD^ HEAD -- ./frontend
 
+      - name: Inspect
+        run: echo ${{ steps.check.conclusion }}
+
       - name: Install
+        if: steps.check.conclusion == 'success'
         uses: CultureHQ/actions-yarn@master
         with:
           args: install
 
-      - name: Log
-        run: echo "Log"
+      - name: Build
+        if: steps.check.conclusion == 'success'
+        run: yarn build
+
+      - name: Inspect
+        if: steps.check.conclusion == 'success'
+        run: ls -l build
