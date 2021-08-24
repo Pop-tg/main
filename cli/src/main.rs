@@ -22,6 +22,7 @@ struct Opts {
 }
 
 #[derive(Clap, Debug)]
+#[clap(setting = AppSettings::ColoredHelp)]
 enum SubCommand {
     #[clap(about = "Create a new record")]
     New(NewOpt),
@@ -30,6 +31,7 @@ enum SubCommand {
 }
 
 #[derive(Clap, Debug)]
+#[clap(setting = AppSettings::ColoredHelp)]
 struct NewOpt {
     #[clap(index = 1)]
     url: url::Url,
@@ -115,8 +117,9 @@ async fn exec() -> anyhow::Result<()> {
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     env::var("RUST_LOG").unwrap_or_else(|_| {
-        env::set_var("RUST_LOG", "info");
-        "info".into()
+        let default = "info".to_owned();
+        env::set_var("RUST_LOG", &default);
+        default
     });
     pretty_env_logger::init();
     match exec().await {
