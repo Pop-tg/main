@@ -20,3 +20,9 @@ jobs:
           npm i
           npm run build
           ls -l build
+      - uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_KEY }} # Required
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.ORG_ID }} #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID }} #Required
