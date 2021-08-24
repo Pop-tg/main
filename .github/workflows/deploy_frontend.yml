@@ -1,0 +1,22 @@
+on:
+  push:
+
+jobs:
+  Checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Check frontend
+        run: git diff --quiet HEAD^ HEAD ./frontend
+
+      - name: Install
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: install
+
+      - name: Log
+        run: echo "Log"
