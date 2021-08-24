@@ -5,7 +5,9 @@
     "lerna": "^4.0.0"
   },
   "scripts": {
+    "bootstrap": "yarn install && lerna bootstrap --scope frontend",
     "build:frontend": "lerna run --scope frontend build",
-    "build:api": "lerna run --scope api build"
+    "build:api": "lerna run --scope api build",
+    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   }
 }
