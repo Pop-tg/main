@@ -1,5 +1,9 @@
 # Pop.tg URL shortener
 
+![CF Badge](https://img.shields.io/static/v1?label=Powered%20By&message=Workers&color=E77A1E&style=for-the-badge)
+![Uptime Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/George-Miao/Upptime/master/api/pop-tg-api/uptime.json&style=for-the-badge)
+![Response Time Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/George-Miao/Upptime/master/api/pop-tg-api/response-time.json&style=for-the-badge)
+
 ## About <a name = "about"></a>
 
 A simple, easy-to-use and free URL shortener built with cf-worker.
